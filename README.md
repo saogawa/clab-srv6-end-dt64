@@ -1,5 +1,5 @@
 
-# SRv6 L3VPN (End.DT46) over BGP Unnumbered
+# Nokia SR-OS SRv6 L3VPN (End.DT46) over BGP Unnumbered
 
 This is a verification environment using Nokia SR OS, featuring BGP Unnumbered for the Underlay and SRv6 L3VPN (End.DT46) for the Overlay.
 
@@ -15,6 +15,11 @@ This lab validates the operation of **End.DT46** (Dual-Stack Decapsulation), whi
 ## Topology
 
 ![Topology](./image/clab-srv6-dt46.jpg)
+
+## Platform
+
+- Nokia 7250 IXR-Xs
+
 
 ## Configuration Highlights
 
