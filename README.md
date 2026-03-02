@@ -1,6 +1,3 @@
-ご指摘の通り、提供いただいたコンフィグは **EVPN ではなく BGP-L3VPN (VPN-IPv4/v6)** の構成です。SRv6をデータプレーンとし、制御プレーンに伝統的な L3VPN 手法（RFC 9252）を用いた構成として README を作成します。
-
----
 
 # SRv6 L3VPN (End.DT46) over BGP Unnumbered
 
