@@ -6,7 +6,7 @@ topology:
   kinds:
     nokia_srsim:
       image: registry.srlinux.dev/pub/nokia_srsim:25.7.R2
-      license: /home/clab/license/license-srsim25.txt
+      license: license-srsim.txt
     linux:
       image: ghcr.io/hellt/network-multitool
 
