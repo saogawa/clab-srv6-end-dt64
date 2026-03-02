@@ -1,0 +1,48 @@
+# TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+# Configuration format version 25.7 revision 0
+
+# Generated 2026-02-26T09:37:35.2Z by admin from 3fff:172:20:20::1
+# Commit ID 23
+#   Committed 2026-02-26T09:37:35.2Z by admin (MD-CLI) from 3fff:172:20:20::1
+
+    configure {
+        router "Base" {
+-           autonomous-system 65010
++           autonomous-system 65000
+            bgp {
+                group "BGP_Unnumbered" {
+                    family {
+-                       ipv4 true
++                       ipv4 false
+                    }
+                    dynamic-neighbor {
+                        interface "to-tor1" {
+-                           allowed-peer-as ["65001"]
++                           allowed-peer-as ["65001" "65000"]
+                        }
+                        interface "to-tor2" {
+-                           allowed-peer-as ["65002"]
++                           allowed-peer-as ["65002" "65000"]
+                        }
+                        interface "to-tor3" {
+-                           allowed-peer-as ["65003"]
++                           allowed-peer-as ["65003" "65000"]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+persistent-indices {
+    description "Persistent indices are maintained by the system and must not be modified."
+    vrtr-if-id {
+        router-name "Base" interface-name "to-tor1" vrtr-id 1 if-index 2
+        router-name "Base" interface-name "to-tor2" vrtr-id 1 if-index 3
+        router-name "Base" interface-name "to-tor3" vrtr-id 1 if-index 4
+    }
+}
+
+# Finished 2026-02-26T09:37:35.2Z

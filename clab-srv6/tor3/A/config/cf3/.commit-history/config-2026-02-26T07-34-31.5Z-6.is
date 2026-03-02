@@ -1,0 +1,26 @@
+# TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+# Configuration format version 25.7 revision 0
+
+# Generated 2026-02-26T07:34:31.5Z by admin from 3fff:172:20:20::1
+# Commit ID 6
+#   Committed 2026-02-26T07:34:31.5Z by admin (MD-CLI) from 3fff:172:20:20::1
+
+    configure {
++       router "Base" {
++           interface "system" {
++               ipv6 {
++                   address 1000::3 {
++                       prefix-length 128
++                   }
++               }
++           }
++       }
+    }
+
+persistent-indices {
+    description "Persistent indices are maintained by the system and must not be modified."
+}
+
+# Finished 2026-02-26T07:34:31.5Z

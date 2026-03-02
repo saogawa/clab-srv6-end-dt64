@@ -1,0 +1,90 @@
+name: srv6
+prefix: "clab"
+
+topology:
+
+  kinds:
+    nokia_srsim:
+      image: registry.srlinux.dev/pub/nokia_srsim:25.7.R2
+      license: /home/clab/license/license-srsim25.txt
+    linux:
+      image: ghcr.io/hellt/network-multitool
+
+  nodes:
+
+    tor1:
+      kind: nokia_srsim
+      type: IXR-X
+      startup-config: clab-srv6/tor1/A/config/cf3/config.cfg
+      env:
+        NOKIA_SROS_SLOT: A
+        NOKIA_SROS_CARD: cpm-ixr-x
+    tor1-1:
+      kind: nokia_srsim
+      type: IXR-X
+      network-mode: container:tor1
+      env:
+        NOKIA_SROS_SLOT: 1
+        NOKIA_SROS_CARD: imm6-qsfpdd+48-sfp56
+
+    spine:
+      kind: nokia_srsim
+      type: IXR-X
+      startup-config: clab-srv6/spine/A/config/cf3/config.cfg
+      env:
+        NOKIA_SROS_SLOT: A
+        NOKIA_SROS_CARD: cpm-ixr-x
+    spine-1:
+      kind: nokia_srsim
+      type: IXR-X
+      network-mode: container:spine
+      env:
+        NOKIA_SROS_SLOT: 1
+        NOKIA_SROS_CARD: imm6-qsfpdd+48-sfp56
+
+    tor2:
+      kind: nokia_srsim
+      type: IXR-X
+      startup-config: clab-srv6/tor2/A/config/cf3/config.cfg
+      env:
+        NOKIA_SROS_SLOT: A
+        NOKIA_SROS_CARD: cpm-ixr-x
+    tor2-1:
+      kind: nokia_srsim
+      type: IXR-X
+      network-mode: container:tor2
+      env:
+        NOKIA_SROS_SLOT: 1
+        NOKIA_SROS_CARD: imm6-qsfpdd+48-sfp56
+
+    tor3:
+      kind: nokia_srsim
+      type: IXR-X
+      startup-config: clab-srv6/tor3/A/config/cf3/config.cfg
+      env:
+        NOKIA_SROS_SLOT: A
+        NOKIA_SROS_CARD: cpm-ixr-x
+    tor3-1:
+      kind: nokia_srsim
+      type: IXR-X
+      network-mode: container:tor3
+      env:
+        NOKIA_SROS_SLOT: 1
+        NOKIA_SROS_CARD: imm6-qsfpdd+48-sfp56
+
+    serv1:
+      kind: linux
+
+    serv2:
+      kind: linux
+
+    serv3:
+      kind: linux
+
+  links:
+    - endpoints: ["serv1:eth1", "tor1:1/1/c7/1"]
+    - endpoints: ["serv1:eth2", "tor2:1/1/c7/1"]
+    - endpoints: ["serv2:eth1", "tor3:1/1/c7/1"]
+    - endpoints: ["tor1:1/1/c1/1", "spine:1/1/c1/1"]
+    - endpoints: ["tor2:1/1/c1/1", "spine:1/1/c2/1"]
+    - endpoints: ["tor3:1/1/c1/1", "spine:1/1/c3/1"]

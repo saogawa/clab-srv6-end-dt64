@@ -1,0 +1,56 @@
+---
+serv1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.4
+serv2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.3
+serv3:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.2
+spine:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 172.20.20.7
+spine-1:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 
+tor1:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 172.20.20.6
+tor1-1:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 
+tor2:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 172.20.20.5
+tor2-1:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 
+tor3:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 172.20.20.8
+tor3-1:
+    username: admin
+    password: NokiaSros1!
+    platform: nokia_srsim
+    hostname: 

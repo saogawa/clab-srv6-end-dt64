@@ -1,0 +1,482 @@
+# TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+# Configuration format version 25.7 revision 0
+
+# Generated 2026-02-26T09:41:25.4Z by system from Console
+# Commit ID 24
+#   Committed 2026-02-26T09:41:25.1Z by admin (MD-CLI) from 3fff:172:20:20::1
+
+configure {
+    log {
+        filter "1001" {
+            named-entry "10" {
+                description "Collect only events of major severity or higher"
+                action forward
+                match {
+                    severity {
+                        gte major
+                    }
+                }
+            }
+        }
+        log-id "99" {
+            description "Default System Log"
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+        log-id "100" {
+            description "Default Serious Errors Log"
+            filter "1001"
+            source {
+                main true
+            }
+            destination {
+                memory {
+                    max-entries 500
+                }
+            }
+        }
+    }
+    policy-options {
+        policy-statement "Export-bgp" {
+            entry 10 {
+                from {
+                    interface ["system"]
+                }
+                to {
+                    protocol {
+                        name [bgp]
+                    }
+                }
+                action {
+                    action-type accept
+                }
+            }
+        }
+    }
+    port 1/1/c1 {
+        admin-state enable
+        connector {
+            breakout c1-100g
+        }
+    }
+    port 1/1/c1/1 {
+        admin-state enable
+        ethernet {
+            mode network
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+    port 1/1/c7 {
+        admin-state enable
+        connector {
+            breakout c1-25g
+        }
+    }
+    port 1/1/c7/1 {
+        admin-state enable
+        ethernet {
+            mode network
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+    router "Base" {
+        autonomous-system 65000
+        router-id 10.0.0.1
+        interface "system" {
+            ipv6 {
+                address 1000::1 {
+                    prefix-length 128
+                }
+            }
+        }
+        interface "to-spine" {
+            admin-state enable
+            port 1/1/c1/1
+            ipv4 {
+                unnumbered {
+                    system
+                }
+            }
+            ipv6 {
+            }
+        }
+        ipv6 {
+            router-advertisement {
+                interface "to-spine" {
+                    admin-state enable
+                    min-advertisement-interval 10
+                }
+            }
+        }
+        bgp {
+            router-id 10.0.0.1
+            ebgp-default-reject-policy {
+                import false
+                export false
+            }
+            group "BGP_Unnumbered" {
+                authentication-key "KrbVPnF6Dg13PM/biw6ErLBhicDE hash2"
+                type internal
+                family {
+                    ipv4 false
+                    ipv6 true
+                }
+                export {
+                    policy ["Export-bgp"]
+                }
+                dynamic-neighbor {
+                    interface "to-spine" {
+                    }
+                }
+            }
+        }
+    }
+    system {
+        name "tor1"
+        grpc {
+            admin-state enable
+            allow-unsecure-connection
+            gnmi {
+                admin-state enable
+                auto-config-save true
+            }
+            gnoi {
+                cert-mgmt {
+                    admin-state enable
+                }
+                file {
+                    admin-state enable
+                }
+                system {
+                    admin-state enable
+                }
+            }
+            md-cli {
+                admin-state enable
+            }
+        }
+        management-interface {
+            netconf {
+                auto-config-save true
+                listen {
+                    admin-state enable
+                }
+            }
+            snmp {
+                packet-size 9216
+                streaming {
+                    admin-state enable
+                }
+            }
+        }
+        login-control {
+            idle-timeout none
+            login-banner true
+            pre-login-message {
+                message "................................................................\n:                  Welcome to Nokia SR OS!                     :\n:                                                              :\n:                                                              :\n: YANG:          https://yang.labctl.net/                      :\n: Community:     https://containerlab.dev/community/           :\n: Discord:       https://containerlab.dev/discord/             :\n................................................................\n"
+            }
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "administrative" {
+                        default-action permit-all
+                        entry 10 {
+                            match "configure system security"
+                            action permit
+                        }
+                        entry 20 {
+                            match "show system security"
+                            action permit
+                        }
+                        entry 30 {
+                            match "tools perform security"
+                            action permit
+                        }
+                        entry 40 {
+                            match "tools dump security"
+                            action permit
+                        }
+                        entry 42 {
+                            match "tools dump system security"
+                            action permit
+                        }
+                        entry 50 {
+                            match "admin system security"
+                            action permit
+                        }
+                        entry 100 {
+                            match "configure li"
+                            action deny
+                        }
+                        entry 110 {
+                            match "show li"
+                            action deny
+                        }
+                        entry 111 {
+                            match "clear li"
+                            action deny
+                        }
+                        entry 112 {
+                            match "tools dump li"
+                            action deny
+                        }
+                        grpc {
+                            rpc-authorization {
+                                gnmi-capabilities permit
+                                gnmi-get permit
+                                gnmi-set permit
+                                gnmi-subscribe permit
+                                gnoi-cert-mgmt-rotate permit
+                                gnoi-cert-mgmt-install permit
+                                gnoi-cert-mgmt-getcert permit
+                                gnoi-cert-mgmt-revoke permit
+                                gnoi-cert-mgmt-cangenerate permit
+                                gnoi-file-get permit
+                                gnoi-file-transfertoremote permit
+                                gnoi-file-put permit
+                                gnoi-file-stat permit
+                                gnoi-file-remove permit
+                                gnoi-system-ping permit
+                                gnoi-system-traceroute permit
+                                gnoi-system-time permit
+                                gnoi-system-setpackage permit
+                                gnoi-system-switchcontrolprocessor permit
+                                gnoi-system-reboot permit
+                                gnoi-system-rebootstatus permit
+                                gnoi-system-cancelreboot permit
+                                md-cli-session permit
+                            }
+                        }
+                        netconf {
+                            base-op-authorization {
+                                action true
+                                cancel-commit true
+                                close-session true
+                                commit true
+                                copy-config true
+                                create-subscription true
+                                delete-config true
+                                discard-changes true
+                                edit-config true
+                                get true
+                                get-config true
+                                get-data true
+                                get-schema true
+                                kill-session true
+                                lock true
+                                validate true
+                            }
+                        }
+                    }
+                    profile "default" {
+                        entry 60 {
+                            match "show config"
+                            action deny
+                        }
+                        entry 65 {
+                            match "show li"
+                            action deny
+                        }
+                        entry 66 {
+                            match "clear li"
+                            action deny
+                        }
+                        entry 67 {
+                            match "tools dump li"
+                            action deny
+                        }
+                        entry 70 {
+                            match "show"
+                            action permit
+                        }
+                        entry 75 {
+                            match "state"
+                            action permit
+                        }
+                        entry 80 {
+                            match "enable-admin"
+                            action permit
+                        }
+                        entry 90 {
+                            match "enable"
+                            action permit
+                        }
+                    }
+                }
+            }
+            snmp {
+                community "76HzdddhlPpRo1Vql+ZB5spLqccgYQ== hash2" {
+                    access-permissions r
+                    version v2c
+                }
+            }
+            ssh {
+                server-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                }
+                client-cipher-list-v2 {
+                    cipher 190 {
+                        name aes256-ctr
+                    }
+                    cipher 192 {
+                        name aes192-ctr
+                    }
+                    cipher 194 {
+                        name aes128-ctr
+                    }
+                    cipher 200 {
+                        name aes128-cbc
+                    }
+                    cipher 205 {
+                        name 3des-cbc
+                    }
+                    cipher 225 {
+                        name aes192-cbc
+                    }
+                    cipher 230 {
+                        name aes256-cbc
+                    }
+                }
+                server-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+                client-mac-list-v2 {
+                    mac 200 {
+                        name hmac-sha2-512
+                    }
+                    mac 210 {
+                        name hmac-sha2-256
+                    }
+                    mac 215 {
+                        name hmac-sha1
+                    }
+                    mac 220 {
+                        name hmac-sha1-96
+                    }
+                    mac 225 {
+                        name hmac-md5
+                    }
+                    mac 240 {
+                        name hmac-md5-96
+                    }
+                }
+            }
+            user-params {
+                attempts {
+                    count 64
+                }
+                local-user {
+                    user "admin" {
+                        password "$2y$10$aDnKUFWYaIwusRw6EmJHs.NwDs96Izq2uMSrl0fQ0n.vjhe9jgVIG"
+                        restricted-to-home false
+                        access {
+                            console true
+                            netconf true
+                            grpc true
+                        }
+                        console {
+                            member ["administrative"]
+                        }
+                        public-keys {
+                            rsa {
+                                rsa-key 32 {
+                                    key-value "AAAAB3NzaC1yc2EAAAADAQABAAACAQDS4+9mUDtdtJgKfmGiLEFtIXWLvZqGpPbw8LMcyOYA2IFNbg2GLODWRW/p73n2mWhWna9U+fYtLb/ReDOFGUOOR1XmMIX3gfRyiqZTnvz/m4cJlQPsWuzxS/bDunSAsEcdo9eVhOHu6yn+rxuZgzrE15yoc5uhHVQmj0RzbS0YPqN2f3KQ9A2W+oU+ie0WolGJA7aGVpL6na6UKpuoCz3rcBW44lRRRiXvgmm2zn+uy22qccPT/jN9sY70ncrfVODBW5Fj6DnNBaH8L7ViRPe3ZD/gCA7c7+Ncphv6xSIRkP2rNneZYBWvVYvSfnfwrWa9N4ShhbUwrHJFBfAzSB7a1ro1Pzr+InmX0Rhx9Y2kC0cHCzNHDXMXlvcp41jZK+rJgi9bfluJCaE+PgDAVEQjAvsKTqbExgsIYDNu7joVbtbpfkVLjPjwcZH0HfsQI9gTG0BabCNL4rdC+xKA8FPoKBWuFxM0fFU05jJjHK4K8w3x8HJ3PuJuthR7PExXwkxrkUYyv3uhDBdkFtdBqiYK6InZy09tkHNZ792emHglzkX4avl1Pfd935a66k0SK392F58BREKxe8zZWsSctSbsBLLPF/swHBpBSdsa20Kqjjgfqex6ic0jW2Pn36DOUQquNY30xLjE3P7ikFTUFbVMprYu9EB4Q+N0PsuK1PnyQQ=="
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        time {
+            zone {
+                non-standard {
+                    name "jst"
+                    offset "09:00"
+                }
+            }
+            ntp {
+                admin-state enable
+                server 172.20.20.1 router-instance "management" {
+                }
+            }
+        }
+    }
+}
+
+persistent-indices {
+    description "Persistent indices are maintained by the system and must not be modified."
+    vrtr-if-id {
+        router-name "Base" interface-name "to-spine" vrtr-id 1 if-index 2
+    }
+}
+
+# Finished 2026-02-26T09:41:25.4Z

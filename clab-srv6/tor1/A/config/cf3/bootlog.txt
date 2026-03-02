@@ -1,0 +1,58 @@
+Boot log started
+Warning: Cgroup memory limit not set or cgroups not present.
+
+Looking for cf3:/bof.cfg ... OK, reading
+
+Total Memory: 386830MB  Chassis Type: 0x13   [ ref: 7b6a11a52ebf; ]  Feature Flags: 00000800
+*** Runtime feature override: STORE_DEBUG_BACKTRACE = OFF
+TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+All rights reserved. All use subject to applicable license agreements.
+Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+
+Scheduler: using fair scheduler policy
+
+
+   ___                    ___           ___           ___
+  /\  \                  /\__\         /\  \         /\  \
+  \:\  \        ___     /::|  |       /::\  \       /::\  \
+   \:\  \      /\__\   /:|:|  |      /:/\:\  \     /:/\:\  \
+   /::\  \    _\/__/  /:/|:|__|__   /:/  \:\  \   _\:\~\:\  \
+  /:/\:\__\  /\__\   /:/ |::::\__\ /:/__/ \:\__\ /\ \:\ \:\__\
+ /:/  \/__/ /:/  /   \/__/~~/:/  / \:\  \ /:/  / \:\ \:\ \/__/
+/:/  /     /:/  /          /:/  /   \:\  /:/  /   \:\ \:\__\
+\/__/      \/__/          /:/  /     \:\/:/  /     \:\/:/  /
+                         /:/  /       \::/  /       \::/  /
+                         \/__/         \/__/         \/__/
+
+Running 64 bit architecture
+
+Time from clock is Mon Mar  2 03:40:22 2026 UTC
+Trace memory initialised
+Initial DNS resolving preference is ipv6-first
+
+Looking for cf3:/bof.cfg ... OK, reading
+
+Current Time: Mon Mar 02 03:40:23 UTC 2026
+Loading TiMOS License for 'TiMOS-C-25.7.R2' from location:
+   'cf3:\license.txt' ... OK
+
+Loading primary configuration file "cf3:\config.cfg"
+Commit 72 (1/1): load full-replace "cf3:\config.cfg"
+ 512 linesLoaded 655 lines in 0.0 seconds from file "cf3:\config.cfg"
+Committing configuration ... finished in 0.1 seconds
+
+TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+All rights reserved. All use subject to applicable license agreements.
+Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+
+
+................................................................
+:                  Welcome to Nokia SR OS!                     :
+:                                                              :
+:                                                              :
+: YANG:          https://yang.labctl.net/                      :
+: Community:     https://containerlab.dev/community/           :
+: Discord:       https://containerlab.dev/discord/             :
+................................................................
+
+Login: 

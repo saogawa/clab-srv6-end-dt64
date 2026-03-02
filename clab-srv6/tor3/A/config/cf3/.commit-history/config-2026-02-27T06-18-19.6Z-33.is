@@ -1,0 +1,28 @@
+# TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+# Configuration format version 25.7 revision 0
+
+# Generated 2026-02-27T06:18:19.6Z by admin from 3fff:172:20:20::1
+# Commit ID 33
+#   Committed 2026-02-27T06:18:19.6Z by admin (MD-CLI) from 3fff:172:20:20::1
+
+    configure {
+        router "Base" {
++           mpls-labels {
++               reserved-label-block "SRV6-16bits-FL" {
++                   start-label 200000
++                   end-label 265534
++               }
++           }
+        }
+    }
+
+persistent-indices {
+    description "Persistent indices are maintained by the system and must not be modified."
+    vrtr-if-id {
+        router-name "Base" interface-name "to-spine" vrtr-id 1 if-index 2
+    }
+}
+
+# Finished 2026-02-27T06:18:19.6Z

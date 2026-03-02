@@ -1,0 +1,118 @@
+# TiMOS-C-25.7.R2 cpm/x86_64 Nokia 7250 IXR Copyright (c) 2000-2025 Nokia.
+# All rights reserved. All use subject to applicable license agreements.
+# Built on Wed Sep 3 21:54:28 UTC 2025 by builder in /builds/257B/R2/panos
+# Configuration format version 25.7 revision 0
+
+# Generated 2026-03-02T03:16:40.7Z by admin from 3fff:172:20:20::1
+# Commit ID 69
+#   Committed 2026-03-02T03:16:40.7Z by admin (MD-CLI) from 3fff:172:20:20::1
+
+    configure {
+        service {
++           vprn "1" {
++               admin-state enable
++               customer "1"
++               segment-routing-v6 1 {
++                   locator "tor1-loc" {
++                       function {
++                           end-dt46 {
++                           }
++                       }
++                   }
++               }
++               bgp-ipvpn {
++                   segment-routing-v6 1 {
++                       admin-state enable
++                       route-distinguisher "1.0.0.1:1"
++                       source-address 100::1
++                       vrf-target {
++                           import-community "target:1:1"
++                           export-community "target:1:1"
++                       }
++                       srv6 {
++                           instance 1
++                           default-locator "tor1-loc"
++                       }
++                   }
++               }
++               interface "Loopback" {
++                   admin-state enable
++                   loopback true
++                   ipv4 {
++                       primary {
++                           address 1.1.1.1
++                           prefix-length 32
++                       }
++                   }
++                   ipv6 {
++                       address 1::1 {
++                           prefix-length 128
++                       }
++                   }
++               }
++               bgp-vpn-backup {
++                   ipv4 true
++                   ipv6 true
++               }
++           }
+-           vprn "10" {
+-               admin-state enable
+-               customer "1"
+-               segment-routing-v6 1 {
+-                   locator "tor1-loc" {
+-                       function {
+-                           end-dt46 {
+-                           }
+-                       }
+-                   }
+-               }
+-               bgp-ipvpn {
+-                   segment-routing-v6 1 {
+-                       admin-state enable
+-                       route-distinguisher "10.0.0.1:10"
+-                       source-address 1000::1
+-                       vrf-target {
+-                           import-community "target:1:10"
+-                           export-community "target:1:10"
+-                       }
+-                       srv6 {
+-                           instance 1
+-                           default-locator "tor1-loc"
+-                       }
+-                   }
+-               }
+-               interface "Loopback" {
+-                   admin-state enable
+-                   loopback true
+-                   ipv4 {
+-                       primary {
+-                           address 1.1.1.1
+-                           prefix-length 32
+-                       }
+-                   }
+-                   ipv6 {
+-                       address 10::1 {
+-                           prefix-length 128
+-                       }
+-                   }
+-               }
+-               bgp-vpn-backup {
+-                   ipv4 true
+-                   ipv6 true
+-               }
+-           }
+        }
+    }
+
+persistent-indices {
+    description "Persistent indices are maintained by the system and must not be modified."
+    vrtr-id {
+        router-name "1" vrtr-id 3
+    }
+    vrtr-if-id {
+        router-name "1" interface-name "Loopback" vrtr-id 3 if-index 4
+        router-name "Base" interface-name "to-spine" vrtr-id 1 if-index 2
+    }
+}
+
+# Finished 2026-03-02T03:16:40.7Z

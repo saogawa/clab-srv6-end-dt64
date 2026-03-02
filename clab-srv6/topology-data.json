@@ -1,0 +1,496 @@
+{
+  "name": "srv6",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-625d66cb9a52",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDS4+9mUDtdtJgKfmGiLEFtIXWLvZqGpPbw8LMcyOYA2IFNbg2GLODWRW/p73n2mWhWna9U+fYtLb/ReDOFGUOOR1XmMIX3gfRyiqZTnvz/m4cJlQPsWuzxS/bDunSAsEcdo9eVhOHu6yn+rxuZgzrE15yoc5uhHVQmj0RzbS0YPqN2f3KQ9A2W+oU+ie0WolGJA7aGVpL6na6UKpuoCz3rcBW44lRRRiXvgmm2zn+uy22qccPT/jN9sY70ncrfVODBW5Fj6DnNBaH8L7ViRPe3ZD/gCA7c7+Ncphv6xSIRkP2rNneZYBWvVYvSfnfwrWa9N4ShhbUwrHJFBfAzSB7a1ro1Pzr+InmX0Rhx9Y2kC0cHCzNHDXMXlvcp41jZK+rJgi9bfluJCaE+PgDAVEQjAvsKTqbExgsIYDNu7joVbtbpfkVLjPjwcZH0HfsQI9gTG0BabCNL4rdC+xKA8FPoKBWuFxM0fFU05jJjHK4K8w3x8HJ3PuJuthR7PExXwkxrkUYyv3uhDBdkFtdBqiYK6InZy09tkHNZ792emHglzkX4avl1Pfd935a66k0SK392F58BREKxe8zZWsSctSbsBLLPF/swHBpBSdsa20Kqjjgfqex6ic0jW2Pn36DOUQquNY30xLjE3P7ikFTUFbVMprYu9EB4Q+N0PsuK1PnyQQ==","ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMDi5SnzbSkaU5DvCucMffxnKg7X9q6jaGVP22Yyklvf"],
+  "nodes": {
+    "serv1": {
+      "index": "0",
+      "shortname": "serv1",
+      "longname": "clab-srv6-serv1",
+      "fqdn": "serv1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/serv1",
+      "kind": "linux",
+      "image": "ghcr.io/hellt/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/serv1",
+        "clab-node-longname": "clab-srv6-serv1",
+        "clab-node-name": "serv1",
+        "clab-node-type": "",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "serv2": {
+      "index": "1",
+      "shortname": "serv2",
+      "longname": "clab-srv6-serv2",
+      "fqdn": "serv2.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/serv2",
+      "kind": "linux",
+      "image": "ghcr.io/hellt/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/serv2",
+        "clab-node-longname": "clab-srv6-serv2",
+        "clab-node-name": "serv2",
+        "clab-node-type": "",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "serv3": {
+      "index": "2",
+      "shortname": "serv3",
+      "longname": "clab-srv6-serv3",
+      "fqdn": "serv3.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/serv3",
+      "kind": "linux",
+      "image": "ghcr.io/hellt/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/serv3",
+        "clab-node-longname": "clab-srv6-serv3",
+        "clab-node-name": "serv3",
+        "clab-node-type": "",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "spine": {
+      "index": "3",
+      "shortname": "spine",
+      "longname": "clab-srv6-spine",
+      "fqdn": "spine.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/spine",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.7",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::7",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1c:c4:03:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/spine",
+        "clab-node-longname": "clab-srv6-spine",
+        "clab-node-name": "spine",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "spine-1": {
+      "index": "4",
+      "shortname": "spine-1",
+      "longname": "clab-srv6-spine-1",
+      "fqdn": "spine-1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/spine-1",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "1c:d8:04:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/spine-1",
+        "clab-node-longname": "clab-srv6-spine-1",
+        "clab-node-name": "spine-1",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor1": {
+      "index": "5",
+      "shortname": "tor1",
+      "longname": "clab-srv6-tor1",
+      "fqdn": "tor1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor1",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1c:c6:05:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor1",
+        "clab-node-longname": "clab-srv6-tor1",
+        "clab-node-name": "tor1",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor1-1": {
+      "index": "6",
+      "shortname": "tor1-1",
+      "longname": "clab-srv6-tor1-1",
+      "fqdn": "tor1-1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor1-1",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "1c:04:06:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor1-1",
+        "clab-node-longname": "clab-srv6-tor1-1",
+        "clab-node-name": "tor1-1",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor2": {
+      "index": "7",
+      "shortname": "tor2",
+      "longname": "clab-srv6-tor2",
+      "fqdn": "tor2.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor2",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1c:17:07:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor2",
+        "clab-node-longname": "clab-srv6-tor2",
+        "clab-node-name": "tor2",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor2-1": {
+      "index": "8",
+      "shortname": "tor2-1",
+      "longname": "clab-srv6-tor2-1",
+      "fqdn": "tor2-1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor2-1",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "1c:9e:08:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor2-1",
+        "clab-node-longname": "clab-srv6-tor2-1",
+        "clab-node-name": "tor2-1",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor3": {
+      "index": "9",
+      "shortname": "tor3",
+      "longname": "clab-srv6-tor3",
+      "fqdn": "tor3.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor3",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.8",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::8",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1c:48:09:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor3",
+        "clab-node-longname": "clab-srv6-tor3",
+        "clab-node-name": "tor3",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    },
+    "tor3-1": {
+      "index": "10",
+      "shortname": "tor3-1",
+      "longname": "clab-srv6-tor3-1",
+      "fqdn": "tor3-1.srv6.io",
+      "group": "",
+      "labdir": "/home/clab/clab-srv6-dt64/clab-srv6/tor3-1",
+      "kind": "nokia_srsim",
+      "image": "registry.srlinux.dev/pub/nokia_srsim:25.7.R2",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "1c:a9:0a:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-625d66cb9a52",
+        "clab-node-group": "",
+        "clab-node-kind": "nokia_srsim",
+        "clab-node-lab-dir": "/home/clab/clab-srv6-dt64/clab-srv6/tor3-1",
+        "clab-node-longname": "clab-srv6-tor3-1",
+        "clab-node-name": "tor3-1",
+        "clab-node-type": "IXR-X",
+        "clab-owner": "root",
+        "clab-topo-file": "/home/clab/clab-srv6-dt64/srv6-dt64.clab.yaml",
+        "containerlab": "srv6"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "serv1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:31:fe:28",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor1",
+          "interface": "e1-1-c7-1",
+          "mac": "aa:c1:ab:16:9d:a2",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "serv1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:fe:de:7d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor2",
+          "interface": "e1-1-c7-1",
+          "mac": "aa:c1:ab:89:0e:d4",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "serv2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:26:d4:5d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "tor3",
+          "interface": "e1-1-c7-1",
+          "mac": "aa:c1:ab:2c:b6:73",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "tor1",
+          "interface": "e1-1-c1-1",
+          "mac": "aa:c1:ab:7f:a5:3b",
+          "peer": "z"
+        },
+        "z": {
+          "node": "spine",
+          "interface": "e1-1-c1-1",
+          "mac": "aa:c1:ab:a9:0e:81",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "tor2",
+          "interface": "e1-1-c1-1",
+          "mac": "aa:c1:ab:1f:37:c3",
+          "peer": "z"
+        },
+        "z": {
+          "node": "spine",
+          "interface": "e1-1-c2-1",
+          "mac": "aa:c1:ab:08:dd:5f",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "tor3",
+          "interface": "e1-1-c1-1",
+          "mac": "aa:c1:ab:f9:b8:ff",
+          "peer": "z"
+        },
+        "z": {
+          "node": "spine",
+          "interface": "e1-1-c3-1",
+          "mac": "aa:c1:ab:c7:cd:58",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
