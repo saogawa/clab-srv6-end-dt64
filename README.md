@@ -1,45 +1,47 @@
 
 # SRv6 L3VPN (End.DT46) over BGP Unnumbered
 
-Nokia SR OS を使用し、アンダーレイに BGP Unnumbered、オーバーレイに SRv6 L3VPN (End.DT46) を採用した検証環境です。
+This is a verification environment using Nokia SR OS, featuring BGP Unnumbered for the Underlay and SRv6 L3VPN (End.DT46) for the Overlay.
 
-## 概要
+## Overview
 
-本ラボでは、IPv4 および IPv6 のデュアルスタック通信を単一の SRv6 SID でカプセル化する **End.DT46** の動作を検証します。
+This lab validates the operation of **End.DT46** (Dual-Stack Decapsulation), which encapsulates both IPv4 and IPv6 dual-stack traffic into a single SRv6 SID.
 
-* **Underlay**: BGP Unnumbered (IPv6 RA ベース) による等コストマルチパス (ECMP) 構成
-* **Overlay**: eBGP Multi-hop による VPN-IPv4/IPv6 ルート交換
-* **Encapsulation**: SRv6 (End.DT46 function)
-* **VRF**: `vprn 1` における Loopback1 間の相互通信
+* **Underlay**: Equal-Cost Multi-Path (ECMP) configuration via BGP Unnumbered (based on IPv6 RA).
+* **Overlay**: VPN-IPv4/IPv6 route exchange via eBGP Multi-hop.
+* **Encapsulation**: SRv6 (End.DT46 function).
+* **VRF**: Mutual connectivity between Loopback1 interfaces within `vprn 1`.
 
-## トポロジー
+## Topology
 
 ![Topology](./image/clab-srv6-dt46.jpg)
 
-## 設定のポイント
+## Configuration Highlights
 
 1. **BGP Unnumbered & Authentication**:
-* アンダーレイは IPv6 Router Advertisement を利用して隣接関係を自動確立。
-* 全ての BGP ピアリング（Underlay/Overlay）に MD5 パスワード認証を適用。
+* Underlay adjacency is established automatically using IPv6 Router Advertisement.
+* MD5 password authentication is applied to all BGP peering (both Underlay and Overlay).
 
 
 2. **SRv6 Locator & End.DT46**:
-* 各 TOR で一意な Locator (`1000:0:0:X::/64`) を定義。
-* `function end-dt46` を使用し、IPv4/IPv6 両方のトラフィックを VRF `1` へマッピング。
+* A unique Locator (`1000:0:0:X::/64`) is defined for each TOR.
+* Both IPv4 and IPv6 traffic are mapped to VRF `1` using the `function end-dt46`.
 
 
 3. **BGP Extended Next-Hop Encoding**:
-* `extended-nh-encoding vpn-ipv4 true` により、IPv4 VPN ルートのネクストホップとして IPv6 アドレス（System IP）を利用可能に設定。
+* `extended-nh-encoding vpn-ipv4 true` is configured to allow IPv6 addresses (System IP) to be used as the next-hop for IPv4 VPN routes.
 
 
 4. **Policy-Based Routing Advertisement**:
-* `policy-options` を使用し、自身の System IPv6 アドレスと SRv6 Locator プレフィックスのみをアンダーレイ BGP で広報。
+* `policy-options` are used to advertise only the local System IPv6 address and the SRv6 Locator prefix via the Underlay BGP.
+
+
 
 
 
 ---
 
-## ベースコンフィグ
+## Configuration
 
 ### tor1
 
